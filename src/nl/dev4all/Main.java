@@ -1,5 +1,6 @@
 package nl.dev4all;
 
+import nl.dev4all.problems.Problem18;
 import nl.dev4all.problems.Problem_15;
 
 /**
@@ -11,7 +12,7 @@ public class Main {
 
         long start = System.currentTimeMillis();
 
-        Problem_15 p = new Problem_15();
+        Problem18 p = new Problem18();
 
         long duration = System.currentTimeMillis() - start;
 
