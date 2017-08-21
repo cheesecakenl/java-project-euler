@@ -4,24 +4,12 @@ import nl.dev4all.input.InputUtil;
 import nl.dev4all.piramid.NumberPiramid;
 import nl.dev4all.piramid.Row;
 
-/*
-    By starting at the top of the triangle below and moving to adjacent numbers on the row below, the maximum total from top to bottom is 23.
-
-        3
-       7 4
-      2 4 6
-     8 5 9 3
-
-    That is, 3 + 7 + 4 + 9 = 23.
-
-    Find the maximum total from top to bottom of the triangle below:
-*/
-public class Problem18 {
+public class Problem67 {
 
     private static boolean DEBUG_MODE = true;
 
     public void solve() {
-        NumberPiramid piramid = InputUtil.createNumberPiramid("input/input_problem_18.txt", " ");
+        NumberPiramid piramid = InputUtil.createNumberPiramid("input/input_problem_67.txt", " ");
 
         int top = piramid.getRows().get(0).getValues()[0];
 
@@ -119,7 +107,7 @@ public class Problem18 {
     public static void main(String[] args) {
         long start = System.currentTimeMillis();
 
-        Problem18 problem = new Problem18();
+        Problem67 problem = new Problem67();
         problem.solve();
 
         long duration = System.currentTimeMillis() - start;

@@ -1,5 +1,8 @@
 package nl.dev4all.input;
 
+import nl.dev4all.piramid.NumberPiramid;
+import nl.dev4all.piramid.Row;
+
 import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.FileInputStream;
@@ -39,5 +42,41 @@ public class InputUtil {
         return bigInts;
     }
 
+    public static NumberPiramid createNumberPiramid(String filename, String seperator)  {
 
+        NumberPiramid piramid = new NumberPiramid();
+
+        try {
+            FileInputStream fstream = new FileInputStream(filename);
+
+            DataInputStream in = new DataInputStream(fstream);
+            BufferedReader br = new BufferedReader(new InputStreamReader(in));
+
+            int count = 1;
+            String strLine;
+            while ((strLine = br.readLine()) != null) {
+                if (seperator != null) {
+                    String[] arr = strLine.split(seperator);
+                    int[] ints = new int[count];
+
+                    int temp = 0;
+                    for (String line : arr) {
+                        ints[temp] = Integer.valueOf(line);
+                        temp++;
+                    }
+
+                    Row row = new Row(count, ints);
+                    piramid.addRow(row);
+                }
+
+                count++;
+            }
+
+            in.close();
+        } catch (Exception e) {
+            System.out.println("Error reading file " + filename);
+        }
+
+        return piramid;
+    }
 }
