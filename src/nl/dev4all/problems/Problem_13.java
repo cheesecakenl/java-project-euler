@@ -116,7 +116,7 @@ public class Problem_13 {
     53503534226472524250874054075591789781264330331690
     */
     public Problem_13() {
-        List<BigInteger> bigInts = InputUtil.readInput("input/input_problem_13.txt");
+        List<BigInteger> bigInts = InputUtil.readInput("input/input_problem_13.txt", null);
 
         BigInteger sum = BigInteger.ZERO;
 

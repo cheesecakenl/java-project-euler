@@ -8,12 +8,8 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author boy
- */
 public class InputUtil {
-    public static List<BigInteger> readInput(String filename)  {
+    public static List<BigInteger> readInput(String filename, String seperator)  {
         List<BigInteger> bigInts = new ArrayList<BigInteger>();
         try {
             FileInputStream fstream = new FileInputStream(filename);
@@ -23,7 +19,16 @@ public class InputUtil {
 
             String strLine;
             while ((strLine = br.readLine()) != null) {
-                bigInts.add(new BigInteger(strLine));
+                if (seperator == null) {
+                    bigInts.add(new BigInteger(strLine));
+                }
+
+                if (seperator != null) {
+                    String[] arr = strLine.split(seperator);
+                    for (String line : arr) {
+                        bigInts.add(new BigInteger(line));
+                    }
+                }
             }
 
             in.close();
@@ -33,4 +38,6 @@ public class InputUtil {
 
         return bigInts;
     }
+
+
 }
