@@ -1,26 +1,49 @@
 package nl.dev4all.problems;
 
+import java.math.BigInteger;
+
+/*
+    Project Euler Problem 15. Lattice paths. See https://projecteuler.net/problem=15
+ */
 public class Problem_15 {
+    public static void main(String[] args) {
+        long start = System.currentTimeMillis();
 
-    public Problem_15() {
-        int size = 20;
-        long[][] rows = new long[size-1][size+1];
+        Problem_15 problem = new Problem_15();
+        problem.solve();
 
-        for (int j = 0; j < size+1; j++) {
-            rows[0][j] = j+1L;
+        long duration = System.currentTimeMillis() - start;
+
+        System.out.println();
+        System.out.println("Done in " + duration + "ms");
+    }
+
+    /*
+        Formula for solving Lattice path with two possible steps
+
+        (n+m)!
+        ------
+        n!*m!
+    */
+    public void solve() {
+        long n = 20;
+        long m = 20;
+
+        BigInteger a = factorial(n + m);
+        BigInteger b = factorial(n);
+        BigInteger c = factorial(m);
+        BigInteger d = b.multiply(c);
+
+        System.out.println(a.divide(d));
+    }
+
+    private BigInteger factorial(long n) {
+        BigInteger total = BigInteger.ONE;
+
+        for (int i = 1; i <= n; i++) {
+            total = total.multiply(BigInteger.valueOf(i));
         }
 
-        for (int i = 1; i < size-1; i++) {
-            for (int j = 0; j < size+1; j++) {
-                long result =0;
-                for (int k = 0; k < j+1; k++) {
-                    result += rows[i-1][k];
-                }
-                rows[i][j] = result;
-
-            }
-        }
-
-        System.out.println(rows[size-2][size]*2);
+        return total;
     }
 }
