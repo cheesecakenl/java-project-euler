@@ -79,4 +79,35 @@ public class InputUtil {
 
         return piramid;
     }
+
+    public static List<String> getListOfNames(String filename, String seperator, String strip)  {
+        List<String> names = new ArrayList<String>();
+
+        try {
+            FileInputStream fstream = new FileInputStream(filename);
+
+            DataInputStream in = new DataInputStream(fstream);
+            BufferedReader br = new BufferedReader(new InputStreamReader(in));
+
+            String strLine;
+            while ((strLine = br.readLine()) != null) {
+                if (strip != null) {
+                    strLine = strLine.replaceAll(strip, "");
+                }
+
+                if (seperator != null) {
+                    String[] arr = strLine.split(seperator);
+                    for (String name : arr) {
+                        names.add(name);
+                    }
+                }
+            }
+
+            in.close();
+        } catch (Exception e) {
+            System.out.println("Error reading file " + filename);
+        }
+
+        return names;
+    }
 }
